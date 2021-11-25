@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ApplicationTests {
 
-    @Autowired
+    /*@Autowired
     ApplicationController applicationController;
 
     @Test
@@ -65,7 +65,7 @@ class ApplicationTests {
     public void resultNotNull() throws WrongInputException {
         assertNotNull(applicationController.getResult("RUB").getBody());
     }
-
+*/
 
 
 
