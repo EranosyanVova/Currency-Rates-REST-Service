@@ -1,7 +1,6 @@
 package com.example.application.restcontroller;
 
 import com.example.application.services.ApplicationService;
-import com.example.application.customexception.WrongInputException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @PropertySource(value = "classpath:app.properties")
 @RequiredArgsConstructor
 public class ApplicationController {
-
     private final ApplicationService service;
 
     @GetMapping(value = {"/","/{currency}"})

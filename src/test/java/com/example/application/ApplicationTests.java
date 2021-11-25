@@ -1,7 +1,7 @@
 package com.example.application;
 
 import com.example.application.customexception.WrongInputException;
-import com.example.application.restcontroller.ApplicationController;
+import com.example.application.services.ApplicationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,26 +12,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class ApplicationTests {
 
     /*@Autowired
-    ApplicationController applicationController;
+    ApplicationService service;
 
     @Test
     public void controllerNotNull() {
-        assertNotNull(applicationController);
+        assertNotNull(service);
     }
 
     @Test
     public void ratesClientNotNull() {
-        assertNotNull(applicationController.getRatesClient());
+        assertNotNull(service.getRandomGifService().getRatesClient());
     }
 
     @Test
     public void giphyClientNotNull() {
-        assertNotNull(applicationController.getGiphyClient());
+        assertNotNull(service.getRandomGifService().getGiphyClient());
     }
 
     @Test
-    public void latestRatesToUSDTest() {
-        double returnedResult = applicationController.getLatestRatesToUSD("RUB");
+    public void latestRatesToUSDTest() throws WrongInputException {
+        double returnedResult = service.getRandomGifService().getLatestRatesToUSD("RUB");
         assertTrue(returnedResult > 0 || returnedResult == -1.0);
     }
 
@@ -65,8 +65,8 @@ class ApplicationTests {
     public void resultNotNull() throws WrongInputException {
         assertNotNull(applicationController.getResult("RUB").getBody());
     }
+
+
 */
-
-
 
 }
