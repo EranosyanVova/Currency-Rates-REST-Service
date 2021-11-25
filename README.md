@@ -1,1 +1,1 @@
-# REST-Currency-Rates-Service
+# Currency-Rates-REST-Service
