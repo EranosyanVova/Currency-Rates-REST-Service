@@ -5,32 +5,37 @@ import com.example.application.customexception.WrongInputException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class RatesService {
     private final RatesClient ratesClient;
 
-    public boolean isLatestCurrencyHigherThenYesterday(String currency) throws WrongInputException {
-        double rateToUsdToday = getLatestRatesToUSD(currency);
-        double rateToUsdYesterday = getYesterdayRatesToUsd(currency);
+    public boolean isLatestCurrencyHigherThenYesterday(String currency) {
+        double rateToUsdToday = getLatestRateToUSD(currency);
+        double rateToUsdYesterday = getYesterdayRateToUsd(currency);
         return rateToUsdToday >= rateToUsdYesterday;
     }
 
-    private double getLatestRatesToUSD(String currency) throws WrongInputException {
-        currency = currency.toUpperCase();
-        if (ratesClient.getInfoAboutLatestRatesToUSD().getRates().containsKey(currency)) {
-            return ratesClient.getInfoAboutLatestRatesToUSD().getRates().get(currency);
+    public double getLatestRateToUSD(String currency) {
+        Map<String, Double> ratesToUsd = ratesClient.getInfoAboutLatestRatesToUSD().getRates();
+        String currencyRate = currency.toUpperCase();
+
+        if (ratesToUsd.containsKey(currencyRate)) {
+            return ratesToUsd.get(currencyRate);
         } else {
             throw new WrongInputException("Wrong input: " + currency);
         }
     }
 
-    private double getYesterdayRatesToUsd(String currency) throws WrongInputException {
-        currency = currency.toUpperCase();
+    public double getYesterdayRateToUsd(String currency) {
         String yesterdayDate = LocalDate.now().minusDays(1).toString();
-        if (ratesClient.getInfoAboutYesterdayRatesToUSD(yesterdayDate).getRates().containsKey(currency)) {
-            return ratesClient.getInfoAboutYesterdayRatesToUSD(yesterdayDate).getRates().get(currency);
+        Map<String, Double> ratesToUsd = ratesClient.getInfoAboutYesterdayRatesToUSD(yesterdayDate).getRates();
+        String currencyRate = currency.toUpperCase();
+
+        if (ratesToUsd.containsKey(currencyRate)) {
+            return ratesToUsd.get(currencyRate);
         } else {
             throw new WrongInputException("Wrong input: " + currency);
         }

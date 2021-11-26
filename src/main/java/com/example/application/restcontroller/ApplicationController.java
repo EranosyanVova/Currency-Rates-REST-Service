@@ -15,12 +15,11 @@ public class ApplicationController {
 
     @GetMapping(value = {"/","/{currency}"})
     public ResponseEntity<String> getResult(@PathVariable(required = false) String currency) {
-       String url;
-       try {
-           url = service.getRandomGifService().getResult(currency);
-       } catch (Exception e) {
-           return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-       }
-       return new ResponseEntity<>(url, HttpStatus.OK);
+       return new ResponseEntity<>(service.getResult(currency), HttpStatus.OK);
+    }
+
+    @ExceptionHandler({RuntimeException.class})
+    public ResponseEntity<String> customHandler(RuntimeException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

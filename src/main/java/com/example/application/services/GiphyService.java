@@ -5,30 +5,22 @@ import com.example.application.customexception.GifNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class GiphyService {
     private final GiphyClient giphyClient;
 
-    public String getCorrectUrl(boolean richUrl) throws GifNotFoundException {
-        return richUrl ? getRichGiphyURL() : getBrokeGiphyURl();
+    public String getCorrectUrl(boolean richUrlStatus) {
+        return richUrlStatus ? getRichGiphyURL() : getBrokeGiphyURl();
     }
 
-    private String getRichGiphyURL() throws GifNotFoundException {
-        String gifUrl = giphyClient.getRichGiphy().getData().getUrl();
-        if (gifUrl != null) {
-            return gifUrl;
-        } else {
-            throw new GifNotFoundException("Gif not found");
-        }
+    public String getRichGiphyURL() {
+        return Optional.ofNullable(giphyClient.getRichGiphy().getData().getUrl()).orElseThrow(() -> new GifNotFoundException("Gif not found"));
     }
 
-    private String getBrokeGiphyURl() throws GifNotFoundException {
-        String gifUrl = giphyClient.getBrokeGiphy().getData().getUrl();
-        if (gifUrl != null) {
-            return gifUrl;
-        } else {
-            throw new GifNotFoundException("Gif not found");
-        }
+    public String getBrokeGiphyURl() {
+        return Optional.ofNullable(giphyClient.getBrokeGiphy().getData().getUrl()).orElseThrow(() -> new GifNotFoundException("Gif not found"));
     }
 }
