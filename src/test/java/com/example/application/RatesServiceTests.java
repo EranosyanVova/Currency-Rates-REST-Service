@@ -25,45 +25,6 @@ public class RatesServiceTests {
     RatesService ratesService;
 
     @Test
-    void getLatestRateToUSDTest() {
-        Map<String, Double> mockRates = new HashMap<>();
-        mockRates.put("RUB", 70.5);
-        mockRates.put("AMD", 1.0);
-        mockRates.put("EUR", 0.85);
-
-        Mockito.when(ratesClient.getInfoAboutLatestRatesToUSD()).thenReturn(new RatesInfo("USD", mockRates));
-
-        double rubRate = ratesService.getLatestRateToUSD("RUB");
-        double amdRate = ratesService.getLatestRateToUSD("AMD");
-        double eurRate = ratesService.getLatestRateToUSD("EUR");
-
-        assertEquals(0, Double.compare(rubRate, 70.5));
-        assertEquals(0, Double.compare(amdRate, 1.0));
-        assertEquals(0, Double.compare(eurRate, 0.85));
-        assertThrows(WrongInputException.class, () -> ratesService.getLatestRateToUSD("asd"));
-    }
-
-    @Test
-    void getYesterdayRateToUSDTest() {
-        Map<String, Double> mockRates = new HashMap<>();
-        mockRates.put("RUB", 70.5);
-        mockRates.put("AMD", 1.0);
-        mockRates.put("EUR", 0.85);
-
-        String yesterdayDate = LocalDate.now().minusDays(1).toString();
-        Mockito.when(ratesClient.getInfoAboutYesterdayRatesToUSD(yesterdayDate)).thenReturn(new RatesInfo("USD", mockRates));
-
-        double rubRate = ratesService.getYesterdayRateToUsd("RUB");
-        double amdRate = ratesService.getYesterdayRateToUsd("AMD");
-        double eurRate = ratesService.getYesterdayRateToUsd("EUR");
-
-        assertEquals(0, Double.compare(rubRate, 70.5));
-        assertEquals(0, Double.compare(amdRate, 1.0));
-        assertEquals(0, Double.compare(eurRate, 0.85));
-        assertThrows(WrongInputException.class, () -> ratesService.getYesterdayRateToUsd("asd"));
-    }
-
-    @Test
     void isLatestCurrencyHigherThenYesterdayTest() {
         Map<String, Double> mockRatesLatest = new HashMap<>();
         mockRatesLatest.put("RUB", 70.5);
@@ -85,6 +46,4 @@ public class RatesServiceTests {
         assertFalse(ratesService.isLatestCurrencyHigherThenYesterday("AMD"));
         assertThrows(WrongInputException.class, () -> ratesService.isLatestCurrencyHigherThenYesterday("asd"));
     }
-
-
 }

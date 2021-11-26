@@ -22,24 +22,6 @@ public class GiphyServiceTests {
     GiphyService giphyService;
 
     @Test
-    public void getRichGiphyURLTest() {
-        Mockito.when(giphyClient.getRichGiphy()).thenReturn(new GiphyInfo(new Giphy("Some url"), new Object()));
-        assertNotNull(giphyService.getRichGiphyURL());
-
-        Mockito.when(giphyClient.getRichGiphy()).thenReturn(new GiphyInfo(new Giphy(null), null));
-        assertThrows(GifNotFoundException.class,() -> giphyService.getRichGiphyURL());
-    }
-
-    @Test
-    public void getBrokeGiphyURLTest() {
-        Mockito.when(giphyClient.getBrokeGiphy()).thenReturn(new GiphyInfo(new Giphy("Some url"), new Object()));
-        assertNotNull(giphyService.getBrokeGiphyURl());
-
-        Mockito.when(giphyClient.getBrokeGiphy()).thenReturn(new GiphyInfo(new Giphy(null), null));
-        assertThrows(GifNotFoundException.class,() -> giphyService.getBrokeGiphyURl());
-    }
-
-    @Test
     public void getCorrectUrlTest() {
         Mockito.when(giphyClient.getRichGiphy()).thenReturn(new GiphyInfo(new Giphy("Rich"), new Object()));
         assertEquals("Rich", giphyService.getCorrectUrl(true));
@@ -52,7 +34,5 @@ public class GiphyServiceTests {
 
         Mockito.when(giphyClient.getBrokeGiphy()).thenReturn(new GiphyInfo(new Giphy(null), null));
         assertThrows(GifNotFoundException.class, () -> giphyService.getCorrectUrl(false));
-
     }
-
 }

@@ -42,5 +42,4 @@ class IntegrationTests {
         ResponseEntity<String> response = testRestTemplate.getForEntity(uriBuilder.toUriString(), String.class);
         assertSame(response.getStatusCode(), HttpStatus.BAD_REQUEST);
     }
-
 }

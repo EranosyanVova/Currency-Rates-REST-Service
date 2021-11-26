@@ -18,7 +18,7 @@ public class RatesService {
         return rateToUsdToday >= rateToUsdYesterday;
     }
 
-    public double getLatestRateToUSD(String currency) {
+    private double getLatestRateToUSD(String currency) {
         Map<String, Double> ratesToUsd = ratesClient.getInfoAboutLatestRatesToUSD().getRates();
         String currencyRate = currency.toUpperCase();
 
@@ -29,7 +29,7 @@ public class RatesService {
         }
     }
 
-    public double getYesterdayRateToUsd(String currency) {
+    private double getYesterdayRateToUsd(String currency) {
         String yesterdayDate = LocalDate.now().minusDays(1).toString();
         Map<String, Double> ratesToUsd = ratesClient.getInfoAboutYesterdayRatesToUSD(yesterdayDate).getRates();
         String currencyRate = currency.toUpperCase();

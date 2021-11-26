@@ -16,11 +16,11 @@ public class GiphyService {
         return richUrlStatus ? getRichGiphyURL() : getBrokeGiphyURl();
     }
 
-    public String getRichGiphyURL() {
+    private String getRichGiphyURL() {
         return Optional.ofNullable(giphyClient.getRichGiphy().getData().getUrl()).orElseThrow(() -> new GifNotFoundException("Gif not found"));
     }
 
-    public String getBrokeGiphyURl() {
+    private String getBrokeGiphyURl() {
         return Optional.ofNullable(giphyClient.getBrokeGiphy().getData().getUrl()).orElseThrow(() -> new GifNotFoundException("Gif not found"));
     }
 }
