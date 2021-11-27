@@ -11,7 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class IntegrationTests {
+class IntegrationTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;

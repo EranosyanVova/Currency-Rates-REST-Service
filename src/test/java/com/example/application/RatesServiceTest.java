@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootTest
-public class RatesServiceTests {
+public class RatesServiceTest {
 
     @MockBean
     RatesClient ratesClient;

@@ -17,10 +17,14 @@ public class GiphyService {
     }
 
     private String getRichGiphyURL() {
-        return Optional.ofNullable(giphyClient.getRichGiphy().getData().getUrl()).orElseThrow(() -> new GifNotFoundException("Gif not found"));
+        String richGiphyURL = giphyClient.getRichGiphy().getData().getUrl();
+        return Optional.ofNullable(richGiphyURL).
+                orElseThrow(() -> new GifNotFoundException("Gif not found"));
     }
 
     private String getBrokeGiphyURl() {
-        return Optional.ofNullable(giphyClient.getBrokeGiphy().getData().getUrl()).orElseThrow(() -> new GifNotFoundException("Gif not found"));
+        String brokeGiphyURL = giphyClient.getBrokeGiphy().getData().getUrl();
+        return Optional.ofNullable(brokeGiphyURL).
+                orElseThrow(() -> new GifNotFoundException("Gif not found"));
     }
 }

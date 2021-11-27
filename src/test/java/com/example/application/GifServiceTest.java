@@ -1,7 +1,7 @@
 package com.example.application;
 
 import com.example.application.customexception.WrongInputException;
-import com.example.application.services.ApplicationService;
+import com.example.application.services.GifService;
 import com.example.application.services.GiphyService;
 import com.example.application.services.RatesService;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class ApplicationServiceTests {
+class GifServiceTest {
 
     @MockBean
     RatesService ratesService;
@@ -22,10 +22,10 @@ class ApplicationServiceTests {
     GiphyService giphyService;
 
     @Autowired
-    ApplicationService applicationService;
+    GifService applicationService;
 
     @Test
-    public void getResultTest() {
+    public void getResultReturnURLTest() {
         Mockito.when(ratesService.isLatestCurrencyHigherThenYesterday(Mockito.anyString())).thenReturn(true);
         Mockito.when(giphyService.getCorrectUrl(true)).thenReturn("Rich");
 
@@ -35,10 +35,10 @@ class ApplicationServiceTests {
         Mockito.when(giphyService.getCorrectUrl(false)).thenReturn("Broke");
 
         assertEquals("Broke", applicationService.getResult("RUB"));
-
-        assertThrows(WrongInputException.class, () -> applicationService.getResult(null));
-
     }
 
-
+    @Test
+    public void getResultExceptionTest() {
+        assertThrows(WrongInputException.class, () -> applicationService.getResult(null));
+    }
 }

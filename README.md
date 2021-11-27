@@ -69,9 +69,9 @@ $ git clone https://github.com/EranosyanVova/Currency-Rates-REST-Service.git
 $ ./gradlew build
 
 # Build Docker Image
-$ docker build -f Dockerfile -t application .
+$ docker build -f Dockerfile -t currencygifexchange .
 
 # Run Docker Container
-$ docker run -p 8080:8080 application
+$ docker run -p 8080:8080 currencygifexchange
 
 ```

@@ -13,7 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class GiphyServiceTests {
+public class GiphyServiceTest {
 
     @MockBean
     GiphyClient giphyClient;

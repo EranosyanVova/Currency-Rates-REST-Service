@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Getter
-public class ApplicationService {
+public class GifService {
     private final RatesService ratesService;
     private final GiphyService giphyService;
 
@@ -16,6 +16,7 @@ public class ApplicationService {
         if (currency == null) {
             throw new WrongInputException("Wrong input: Currency entry is empty");
         }
-        return giphyService.getCorrectUrl(ratesService.isLatestCurrencyHigherThenYesterday(currency));
+        boolean isLatestCurrency = ratesService.isLatestCurrencyHigherThenYesterday(currency);
+        return giphyService.getCorrectUrl(isLatestCurrency);
     }
 }
