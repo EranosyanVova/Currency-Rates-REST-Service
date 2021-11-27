@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@PropertySource(value = "classpath:app.properties")
+@PropertySource(value = "classpath:application.properties")
 @RequiredArgsConstructor
 public class CurrencyGifController {
     private final GifService service;
