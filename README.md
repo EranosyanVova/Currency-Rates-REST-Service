@@ -16,10 +16,8 @@ Requirements
 
 Usage
 =====
-This service responses only to get request with the following endpoint
-```
-http://localhost:8080/{currency}
-```
+This service responses only to get request with the following endpoint:
+`http://localhost:8080/{currency}`
 
 Valid currency path variables are 3-letter code:
 
@@ -33,45 +31,42 @@ USD - United States Dollar
 
 Example `http://localhost:8080/AMD`
 
-Service's response:
+Service's response - redirect to url. Example^
 
 ```
 https://giphy.com/gifs/G2Esports-carlos-ocelote-g2carlos-BZPv2nPrHYiaM0LJNE
-``` 
+```
 
-Build
-=====
+# Build
 To build and run this application locally, you'll need Git, Gradle and JDK installed on your computer.
-
 From your command line:
 
+### Clone this repository
 ```
-# Clone this repository
-$ git clone https://github.com/EranosyanVova/Currency-Rates-REST-Service.git
-
-# Go into the repository
-$ cd Exchange-Rates-Service
-
-# Build
-$ ./gradlew build
-
-# Run the app
-$ java -jar build/libs/exchange-0.0.1-SNAPSHOT.jar
+git clone https://github.com/EranosyanVova/Currency-Rates-REST-Service.git
 ```
 
-Docker instructions:
+### Go into the repository
+`cd Exchange-Rates-Service`
 
+### Build
+`./gradlew build`
+
+### Run the app
+`java -jar build/libs/exchange-0.0.1-SNAPSHOT.jar`
+
+# Docker instructions:
+
+### Clone this repository
 ```
-# Clone this repository
-$ git clone https://github.com/EranosyanVova/Currency-Rates-REST-Service.git
-
-# Build
-$ ./gradlew build
-
-# Build Docker Image
-$ docker build -f Dockerfile -t currencygifexchange .
-
-# Run Docker Container
-$ docker run -p 8080:8080 currencygifexchange
-
+git clone https://github.com/EranosyanVova/Currency-Rates-REST-Service.git
 ```
+
+### Build
+`./gradlew build`
+
+### Build Docker Image
+`docker build -f Dockerfile -t currencygifexchange .`
+
+### Run Docker Container
+`docker run -p 8080:8080 currencygifexchange`
